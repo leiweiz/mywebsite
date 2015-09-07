@@ -10,3 +10,4 @@ class Keywords(models.Model):
 
 class MitbbsPages(models.Model):
 	cn_page = models.CharField(max_length=50, blank=False)
+	en_page = models.CharField(max_length=50, blank=False)
