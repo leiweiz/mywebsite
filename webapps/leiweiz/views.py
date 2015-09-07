@@ -1,6 +1,6 @@
 from django.shortcuts import render
 
-# Create your views here.
+from models import *
 
 def index(request):
 
@@ -18,4 +18,12 @@ def mitbbs(request):
 		keywords = request.GET['keywords'].split(' ')
 		pages = int(request.GET['pages'])
 		content['results'] = mitbbs_spider(max_pages=pages, key_words=keywords)
+		for keyword in keywords:
+			try:
+				item = Keywords.objects.get(keyword=keyword)
+				item.count = item.count + 1
+			except:
+				item = Keywords(keyword=keyword, page='JobHunting',count=1)
+			finally:
+				item.save()
 	return render(request, 'mitbbs.html', content)

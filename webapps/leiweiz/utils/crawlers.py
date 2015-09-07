@@ -246,7 +246,7 @@ board = {
         '鸟语花香': 'EnglishChat',
         '两性平等': 'GenderEquality',
         '豆蔻年华': 'Girl',
-        '心情好么？': 'Heart',
+        '心情好么': 'Heart',
         '肚皮舞运动': 'Joke',
         '同女之舞': 'LES',
         '情爱幽幽': 'Love',
@@ -277,7 +277,7 @@ board = {
         '海棠诗社': 'Poetry',
         '散文.原创文学板': 'Prose',
         '心理分析': 'PsychoAnalysis',
-        '气功 [只读]': 'QiGong',
+        '气功': 'QiGong',
         '书香世家': 'Reader',
         '星际浪子 ': 'SciFiction',
         '性意识': 'Sex',
@@ -286,7 +286,7 @@ board = {
         '译林': 'Translation',
         '基督信仰': 'TrustInJesus',
         '佛道儒': 'Wisdom',
-        '粉墨春秋，梨园夜话（戏曲）': 'Xiqu'
+        '戏曲': 'Xiqu'
     },
     '校友联谊': {
         '中国科学院': 'AC',
@@ -487,7 +487,7 @@ def mitbbs_spider(specific_board='JobHunting', max_pages=1, key_words=['']):
     return results
 
 
-def get_all_board(main_board):
+def get_all_values(main_board):
     result = []
 
     def get_all(root):
@@ -496,5 +496,17 @@ def get_all_board(main_board):
                 get_all(root[key])
         else:
             result.append(root)
+    get_all(main_board)
+    return result
+
+
+def get_all_keys(main_board):
+    result = []
+
+    def get_all(root):
+        if hasattr(root, 'keys'):
+            for key in root.keys():
+                result.append(key)
+                get_all(root[key])
     get_all(main_board)
     return result
