@@ -21,7 +21,7 @@ def mitbbs(request):
 		pages = int(request.GET['pages'])
 		content_page = request.GET['content_page']
 		try:
-			specific_board = MitbbsPages.objects.get(cn_page=content_page).en_page
+			specific_board = MitbbsPages.objects.get(cn_page__contains=content_page).en_page
 		except:
 			specific_board = 'JobHunting'
 		content['results'] = mitbbs_spider(specific_board=specific_board,max_pages=pages, key_words=keywords)
