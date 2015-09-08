@@ -450,7 +450,7 @@ def mitbbs_spider(specific_board='JobHunting', max_pages=1, key_words=['']):
                     continue
                 for key_word in key_words:
                     if key_word in title:
-                        results[str(page+1) + ': ' +title.strip(' \t\n\r')] = new_url
+                        results[title.strip(' \t\n\r')] = new_url
                         #print(title.strip(' \t\n\r') + '\n' + new_url)
                         break
         except:
